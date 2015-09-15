@@ -1,0 +1,5 @@
+{
+    "UsersManagerEncrypted": {
+        "LoginEncryptedInactive": "The UsersManagerEncrypted plugin cannot be activated if the LoginEncrypted plugin is inactive or not installed."
+    }
+}

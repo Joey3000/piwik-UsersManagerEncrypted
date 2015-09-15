@@ -9,6 +9,8 @@
  */
 namespace Piwik\Plugins\UsersManagerEncrypted;
 
+use Exception;
+use Piwik\Piwik;
 use Piwik\Plugin\Manager;
 
 class UsersManagerEncrypted extends \Piwik\Plugins\UsersManager\UsersManager
@@ -29,9 +31,14 @@ class UsersManagerEncrypted extends \Piwik\Plugins\UsersManager\UsersManager
      */
     public function activate()
     {
-        // deactivate default UsersManager module, as both cannot be activated together
-        if (Manager::getInstance()->isPluginActivated("UsersManager") == true) {
-            Manager::getInstance()->deactivatePlugin("UsersManager");
+        // don't allow plugin activation if LoginEncrypted is inactive
+        if (Manager::getInstance()->isPluginActivated("LoginEncrypted") == false) {
+            throw new Exception(Piwik::translate('UsersManagerEncrypted_LoginEncryptedInactive'));
+        } else {
+            // deactivate default UsersManager module, as both cannot be activated together
+            if (Manager::getInstance()->isPluginActivated("UsersManager") == true) {
+                Manager::getInstance()->deactivatePlugin("UsersManager");
+            }
         }
     }
 
