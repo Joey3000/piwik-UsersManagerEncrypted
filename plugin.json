@@ -1,14 +1,13 @@
 {
     "name": "UsersManagerEncrypted",
     "version": "0.1.0",
-    "description": "Works with the LoginEncrypted plugin to encrypt users' passwords when transmitted from browser to the Piwik server on users management.",
+    "description": "Works with the LoginEncrypted plugin to encrypt users' passwords when transmitted from browser to the Piwik server on users management.               The core UsersManager plugin will be automatically deactivated on activation of this plugin, and activated again on deactivation of this plugin. Requires LoginEncrypted plugin version >= 2.0.0.",
     "theme": false,
     "keywords": ["user", "manager", "password", "encryption", "RSA", "https", "ssl", "tls"],
     "license": "GPL v3+",
     "homepage": "https://github.com/Joey3000/piwik-UsersManagerEncrypted",
     "require": {
-        "piwik": ">=2.14.3",
-        "LoginEncrypted": ">=1.0.1"
+        "piwik": ">=2.14.3"
     },
     "authors": [
         {
