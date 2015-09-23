@@ -14,7 +14,8 @@ use Piwik\API\ResponseBuilder;
 use Piwik\Common;
 use Piwik\Container\StaticContainer;
 use Piwik\Piwik;
-use Piwik\Plugins\LoginEncrypted\Controller as LoginEncrypted_Controller;
+use Piwik\Plugins\LoginEncrypted\Crypto;
+use Piwik\Plugins\LoginEncrypted\CryptoForm;
 use Piwik\Plugins\UsersManager\Model;
 
 class Controller extends \Piwik\Plugins\UsersManager\Controller
@@ -29,7 +30,7 @@ class Controller extends \Piwik\Plugins\UsersManager\Controller
     {
         try {
             $passwordCurrent = Common::getRequestvar('passwordCurrent', false);
-            $passwordCurrent = LoginEncrypted_Controller::decryptPassword($passwordCurrent);
+            $passwordCurrent = Crypto::decrypt($passwordCurrent);
 
             // Note: Compare loosely, so both, "" (password input empty; forms send strings)
             //       and "password input not sent" are covered - see
@@ -62,8 +63,8 @@ class Controller extends \Piwik\Plugins\UsersManager\Controller
     }
 
     /**
-     * Gets the NEW password from HTTP request variable, decrypts it and writes the decrypted
-     * value back into the _POST request.
+     * Gets the NEW password from HTTP request parameter, decrypts it and writes
+     * the decrypted value back into _POST request.
      * Note: Writing to _POST directly, as there doesn't seem to be another way,
      *       because the parent function will re-read from request (i.e. _POST).
      *
@@ -72,23 +73,10 @@ class Controller extends \Piwik\Plugins\UsersManager\Controller
     protected function processPasswordChange($userLogin)
     {
         $password = Common::getRequestvar('password', false);
-        $password = LoginEncrypted_Controller::decryptPassword($password);
-
-        // write out if a password was submitted
-        // Note: Compare loosely, so both, "" (password input empty; forms send strings)
-        //       and "password input not sent" are covered - see
-        //       https://secure.php.net/manual/en/types.comparisons.php
-        if ($password != "") {
-            $_POST['password'] = $password;
-        }
+        CryptoForm::decryptAndWriteToPost('password', $password);
 
         $passwordBis = Common::getRequestvar('passwordBis', false);
-        $passwordBis = LoginEncrypted_Controller::decryptPassword($passwordBis);
-
-        // write out if a password confirmation was submitted
-        if ($passwordBis != "") {
-            $_POST['passwordBis'] = $passwordBis;
-        }
+        CryptoForm::decryptAndWriteToPost('passwordBis', $passwordBis);
 
         // call the original function on the decrypted values
         return parent::processPasswordChange($userLogin);

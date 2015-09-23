@@ -9,7 +9,7 @@
  */
 namespace Piwik\Plugins\UsersManagerEncrypted;
 
-use Piwik\Plugins\LoginEncrypted\Controller as LoginEncrypted_Controller;
+use Piwik\Plugins\LoginEncrypted\Crypto;
 
 class API extends \Piwik\Plugins\UsersManager\API
 {
@@ -20,7 +20,7 @@ class API extends \Piwik\Plugins\UsersManager\API
      */
     public function addUser($userLogin, $password, $email, $alias = false, $_isPasswordHashed = false)
     {
-        $password = LoginEncrypted_Controller::decryptPassword($password);
+        $password = Crypto::decrypt($password);
 
         return parent::addUser($userLogin, $password, $email, $alias, $_isPasswordHashed);
     }
@@ -46,7 +46,7 @@ class API extends \Piwik\Plugins\UsersManager\API
         //            * /plugins/UsersManagerEncrypted/javascripts/usersManager.js::sendUpdateUserAJAX()
         //              when a super user changes someone's password in Piwik user administration.
         if ($directCall == 'true') {
-            $password = LoginEncrypted_Controller::decryptPassword($password);
+            $password = Crypto::decrypt($password);
         }
 
         return parent::updateUser($userLogin, $password, $email, $alias, $_isPasswordHashed);
