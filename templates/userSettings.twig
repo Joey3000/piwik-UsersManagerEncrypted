@@ -1,0 +1,11 @@
+{% extends '@UsersManager/userSettings.twig' %}
+
+{% block lastItemInList %}
+    <div class="form-group">
+        <label for="passwordCurrent">{{ 'UsersManagerEncrypted_CurrentPassword'|translate }}</label>
+        <div class="form-help">
+            {{ 'UsersManagerEncrypted_CurrentPasswordRequired'|translate }}
+        </div>
+        <input value="" autocomplete="off" id="passwordCurrent" type="password"/>
+    </div>
+{% endblock %}

@@ -45,7 +45,7 @@ class API extends \Piwik\Plugins\UsersManager\API
         //            decryption is needed in this case):
         //            * /plugins/UsersManagerEncrypted/javascripts/usersManager.js::sendUpdateUserAJAX()
         //              when a super user changes someone's password in Piwik user administration.
-        if($directCall == 'true') {
+        if ($directCall == 'true') {
             $password = LoginEncrypted_Controller::decryptPassword($password);
         }
 

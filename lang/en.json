@@ -1,5 +1,10 @@
 {
     "UsersManagerEncrypted": {
-        "LoginEncryptedInactive": "The UsersManagerEncrypted plugin cannot be activated if the LoginEncrypted plugin is inactive or not installed."
+        "LoginEncryptedInactive": "The UsersManagerEncrypted plugin cannot be activated if the LoginEncrypted plugin is inactive or not installed.",
+        "CurrentPassword": "Current password",
+        "CurrentPasswordRequired": "Enter current password to make any changes on this page.",
+        "CurrentPasswordIncorrect": "Current password is incorrect.",
+        "CurrentPasswordNotProvided": "Current password not provided.",
+        "UserNotAuthenticated": "User is not authenticated."
     }
 }

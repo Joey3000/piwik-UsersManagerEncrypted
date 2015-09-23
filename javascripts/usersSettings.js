@@ -25,6 +25,7 @@ function sendUserSettingsAJAX() {
     var email = $('#email').val();
     var password = $('#password').val();
     var passwordBis = $('#passwordBis').val();
+    var passwordCurrent = $('#passwordCurrent').val();
     var defaultReport = $('input[name=defaultReport]:checked').val();
 
     if (defaultReport == 1) {
@@ -38,6 +39,9 @@ function sendUserSettingsAJAX() {
     }
     if (passwordBis) {
         postParams.passwordBis = loginEncrypted_Encrypt(passwordBis);
+    }
+    if (passwordCurrent) {
+        postParams.passwordCurrent = loginEncrypted_Encrypt(passwordCurrent);
     }
     postParams.defaultReport = defaultReport;
     postParams.defaultDate = defaultDate;

@@ -28,6 +28,8 @@ class UsersManagerEncrypted extends \Piwik\Plugins\UsersManager\UsersManager
 
     /**
      * Called on plugin activation.
+     *
+     * @throws Exception if the LoginEncrypted plugin is inactive
      */
     public function activate()
     {
