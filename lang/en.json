@@ -4,7 +4,7 @@
         "CurrentPassword": "Current password",
         "CurrentPasswordRequired": "Enter current password to make any changes on this page.",
         "CurrentPasswordIncorrect": "Current password is incorrect.",
-        "CurrentPasswordNotProvided": "Current password not provided.",
+        "CurrentPasswordNotProvided": "Current password was not provided.",
         "UserNotAuthenticated": "User is not authenticated."
     }
 }
