@@ -278,7 +278,7 @@ $(document).ready(function () {
         }
     );
 
-    $('.admin .user .addrow').click(function () {
+    $('.admin .user .add-user').click(function () {
         piwikHelper.hideAjaxError();
         $(this).toggle();
 
@@ -287,10 +287,10 @@ $(document).ready(function () {
         newRowId = 'row' + newRowId;
 
         $($.parseHTML(' <tr id="' + newRowId + '">\
-				<td><input id="useradd_login" value="login?" size="10" /></td>\
-				<td><input id="useradd_password" value="password" size="10" /></td>\
-				<td><input id="useradd_email" value="email@domain.com" size="15" /></td>\
-				<td><input id="useradd_alias" value="alias" size="15" /></td>\
+				<td><input id="useradd_login" placeholder="login" size="10" /></td>\
+				<td><input id="useradd_password" placeholder="password" size="10" /></td>\
+				<td><input id="useradd_email" placeholder="email@domain.com" size="15" /></td>\
+				<td><input id="useradd_alias" placeholder="alias" size="15" /></td>\
 				<td>-</td>\
                 <td>-</td>\
 				<td><input type="submit" class="submit adduser"  value="' + _pk_translate('General_Save') + '" /></td>\
@@ -303,7 +303,7 @@ $(document).ready(function () {
         $('.cancel').click(function () {
             piwikHelper.hideAjaxError();
             $(this).parents('tr').remove();
-            $('.addrow').toggle();
+            $('.add-user').toggle();
         });
     });
 
