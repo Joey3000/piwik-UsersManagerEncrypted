@@ -1,6 +1,8 @@
 {% extends '@UsersManager/userSettings.twig' %}
 
-{% block lastItemInList %}
+{% block settingsTable %}
+    {{ parent() }}
+
     <div class="form-group">
         <label for="passwordCurrent">{{ 'UsersManagerEncrypted_CurrentPassword'|translate }}</label>
         <div class="form-help">
